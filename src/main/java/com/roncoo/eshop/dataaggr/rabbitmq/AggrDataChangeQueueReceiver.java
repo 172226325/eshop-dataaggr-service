@@ -32,7 +32,13 @@ public class AggrDataChangeQueueReceiver {
     	} else if("product_intro".equals(dimType)) {
     		processProductIntroDimDataChange(messageJSONObject); 
     	} else if("product".equals(dimType)) {
-    		processProductDimDataChange(messageJSONObject); 
+			try{
+				processProductDimDataChange(messageJSONObject);
+			}catch(RuntimeException e){
+				System.out.println("出现了运行时异常，我这里就吃下去了");
+				e.printStackTrace();
+			}
+
     	}
     }  
     
